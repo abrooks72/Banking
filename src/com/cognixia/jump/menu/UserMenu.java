@@ -59,9 +59,23 @@ public class UserMenu {
 			System.out.println("==================");
 			userMenuDisplay();
 		}
-		else if(choice == 3) {
-			System.out.println("Enter whose account you would like to deposit into");
-			System.out.println("Enter how much you would like to deposit");
+		else if(choice == 3) {																//Loses track of money when signing out
+			System.out.println("Enter whose account you would like to transfer into off this list of users:");
+			System.out.println(loginClass.createAccounts().keySet());
+			String user = scan.next();
+			System.out.println("Enter how much you would like to transfer");
+			int amountTransfer = scan.nextInt();
+			
+			if(amountTransfer > money) {
+				System.out.println("***Insufficient Funds***");
+				System.out.println("================");
+				userMenuDisplay();
+			}
+			else {
+				money -= amountTransfer;
+				System.out.println("You now have: " + money + "$");
+				userMenuDisplay();
+			}
 		}
 		else if(choice == 4) {
 			System.out.println("Recent transactions:");
