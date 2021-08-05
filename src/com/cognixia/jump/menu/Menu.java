@@ -9,6 +9,7 @@ public class Menu {
 	
 	Scanner scan = new Scanner(System.in);
 	public static Login loginClass = new Login();
+	public static UserMenu loggedUser = new UserMenu();
 	
 	public Menu() {
 		
@@ -28,7 +29,7 @@ public class Menu {
 		
 		if(choice == 0) {				// 0 represents the main menu
 			System.out.println("Main Menu");
-			display = newAccount + newLine + login + newLine + exit + newLine + back;
+			display = newAccount + newLine + login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
 			choice = scan.nextInt();
@@ -37,10 +38,10 @@ public class Menu {
 		}
 		if(choice == 1) {			// 1 represents the create new account menu
 			System.out.println("Create a New Account");
-			display =  login + newLine + exit + newLine + back;
+			display =  login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
-			// Make a call to new account class
+			// Make a call to new account class, this is why it stops
 			choice = scan.nextInt();
 			menuOption = 1;
 			System.out.println("===============");
@@ -58,6 +59,7 @@ public class Menu {
 			if(success == true) {
 				System.out.println("Login Success");
 				System.out.println("=================");
+				loggedUser.userMenuDisplay();
 				// new menu
 			}
 			else {
@@ -72,18 +74,6 @@ public class Menu {
 			menuOption = 3;
 			return;
 		}
-		else if(choice == 4) {
-			System.out.println("Sign out");
-			display = newAccount + newLine + login + newLine + exit;
-			System.out.println(display);
-			System.out.print("Which option would you like to choose: ");
-			choice = scan.nextInt();
-			menuOption = 4;
-			System.out.println("================");
-		}
-		
-		
-	
 		
 		
 		scan.close();
