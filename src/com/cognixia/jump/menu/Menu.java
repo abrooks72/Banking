@@ -20,7 +20,7 @@ public class Menu {
 		String newAccount = "1: Create New Account";
 		String login = "2: Login";
 		String exit = "3: Exit.";
-		String back = "4: Back";
+		String back = "4: Sign Out or Exit";
 		
 		int menuOption = -1;
 		
@@ -45,19 +45,27 @@ public class Menu {
 			menuOption = 1;
 			System.out.println("===============");
 		}
-		else if(choice == 2) {			// Login option
+		else if(choice == 2) {			// Login option ... somewhat works
 			System.out.println("Login to Your Account");
-			display = newAccount + newLine + exit + newLine + back;
-			System.out.println(display);
-			System.out.print("Which option would you like to choose: ");
-			choice = scan.nextInt();
-			menuOption = 2;
-			// Make a call to login class
-			System.out.println("===============");
-			if(!loginClass.verifyAccount("abrooks72", "brazodious")) {					// Trouble
-				System.out.println("Invalid username/password combination");
+			System.out.println("What is your username:");
+			String user = scan.next();
+			System.out.println("Enter your password:");
+			String password = scan.next();
+			
+			
+			boolean success = loginClass.verifyAccount(user, password);
+			
+			if(success == true) {
+				System.out.println("Login Success");
+				System.out.println("=================");
+				// new menu
+			}
+			else {
+				System.out.println("Login failure, returning to main menu");
+				System.out.println("==============");
 				currentMenu(0);
 			}
+			
 		}
 		else if(choice == 3) {			// 3 represents the exit menu
 			System.out.println("Thanks for using this application.");
@@ -65,7 +73,7 @@ public class Menu {
 			return;
 		}
 		else if(choice == 4) {
-			System.out.println("Main Menu");
+			System.out.println("Sign out");
 			display = newAccount + newLine + login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
@@ -76,7 +84,7 @@ public class Menu {
 		
 		
 	
-		currentMenu(choice);
+		
 		
 		scan.close();
 		
