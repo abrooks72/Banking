@@ -5,6 +5,7 @@ import java.util.*;
 public class Login {
 	
 	HashMap<String, String> accounts = new HashMap<String, String>();
+	HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
 	
 	// Create a HashMap object called capitalCities
 	public boolean hasAccount(String hasAccount) {
@@ -18,19 +19,30 @@ public class Login {
     public HashMap<String, String> createAccounts() {
     	
     	accounts.put("abrooks72", "brazodious");
+    	userFunds.put("abrooks72", 10000);
         accounts.put("pepekwan", "1234");
+        userFunds.put("pepekwan", 50000);
         accounts.put("TylerThompson", "Cookie123");
+        userFunds.put("TylerThompson", 50000);
         accounts.put("Rodger32", "Federer");
+        userFunds.put("Rodger32", 10000);
         //////////////////////////////////////////// 
         
         
        return accounts;
     }
     
+    public int accountBalance(String name) {
+    	int balance = userFunds.get(name);
+    	
+    	
+    	return balance;
+    }
 	
 	
-	public Login() {
-		
+	public int balance(String name) {
+		int money = userFunds.get(name);
+		return money;
 	}
 	
 	public boolean verifyAccount(String username, String password) {
@@ -38,8 +50,8 @@ public class Login {
 		createAccounts();
 		
 		if(accounts.containsKey(username) && accounts.get(username).equals(password)) {
-			System.out.println("Successfully logged in");
 			return true;
+			
 		}
 		else {
 			System.out.println("Invalid Login Credentials");

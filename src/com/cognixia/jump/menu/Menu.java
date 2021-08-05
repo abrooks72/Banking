@@ -9,7 +9,7 @@ public class Menu {
 	
 	Scanner scan = new Scanner(System.in);
 	public static Login loginClass = new Login();
-	public static UserMenu loggedUser = new UserMenu();
+	
 	
 	public Menu() {
 		
@@ -20,8 +20,7 @@ public class Menu {
 		String newLine = System.getProperty("line.separator");
 		String newAccount = "1: Create New Account";
 		String login = "2: Login";
-		String exit = "3: Exit.";
-		String back = "4: Sign Out or Exit";
+		String exit = "3: Close Browser";
 		
 		int menuOption = -1;
 		
@@ -41,7 +40,7 @@ public class Menu {
 			display =  login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
-			// Make a call to new account class, this is why it stops
+			// Make a call to new account class
 			choice = scan.nextInt();
 			menuOption = 1;
 			System.out.println("===============");
@@ -59,8 +58,8 @@ public class Menu {
 			if(success == true) {
 				System.out.println("Login Success");
 				System.out.println("=================");
-				loggedUser.userMenuDisplay();
-				// new menu
+				UserMenu userMenu = new UserMenu(user, password);
+				userMenu.userMenuDisplay();
 			}
 			else {
 				System.out.println("Login failure, returning to main menu");

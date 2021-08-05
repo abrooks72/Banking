@@ -2,7 +2,7 @@ package com.cognixia.jump.account;
 
 public class Account {
 	
-	private String username;
+	private static String username;
 	private String password;
 	
 	public Account(String username, String password) {
@@ -11,7 +11,7 @@ public class Account {
 		this.password = password;
 	}
 	
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 	
