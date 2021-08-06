@@ -5,7 +5,7 @@ import java.util.*;
 public class Login {
 	
 	HashMap<String, String> accounts = new HashMap<String, String>();
-	HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
 	
 	// Create a HashMap object called capitalCities
 	public boolean hasAccount(String hasAccount) {
@@ -32,18 +32,6 @@ public class Login {
        return accounts;
     }
     
-    public int accountBalance(String name) {
-    	int balance = userFunds.get(name);
-    	
-    	
-    	return balance;
-    }
-	
-	
-	public int balance(String name) {
-		int money = userFunds.get(name);
-		return money;
-	}
 	
 	public boolean verifyAccount(String username, String password) {
 		

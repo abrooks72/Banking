@@ -1,5 +1,6 @@
 package com.cognixia.jump.menu;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 import loginApp.Login;
@@ -9,6 +10,7 @@ public class Menu {
 	
 	Scanner scan = new Scanner(System.in);
 	public static Login loginClass = new Login();
+	public static HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
 	
 	
 	public Menu() {
@@ -58,6 +60,8 @@ public class Menu {
 			if(success == true) {
 				System.out.println("Login Success");
 				System.out.println("=================");
+				int money = Login.userFunds.get(user);
+				System.out.println("Current Balance: " + money + "$");
 				UserMenu userMenu = new UserMenu(user, password);
 				userMenu.userMenuDisplay();
 			}

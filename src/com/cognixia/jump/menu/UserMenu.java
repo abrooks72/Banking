@@ -1,6 +1,7 @@
 package com.cognixia.jump.menu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,17 +15,19 @@ public class UserMenu {
 	public static Login loginClass = new Login();
 	public static Menu defaultMenu = new Menu();
 	public List<String> transactions = new ArrayList<String>();
+	public static HashMap<String, Integer> userFundsMain = new HashMap<String, Integer>();
 	public int money = 0;
 	
 	private static String username;
 	private static String password;
 	
 	
-	
 	public UserMenu(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
+		
+		addFunds();
 	}
 	
 	
@@ -52,7 +55,12 @@ public class UserMenu {
 	}
 
 
-
+	public void addFunds() {
+		userFundsMain.put("abrooks72", 10000);
+		userFundsMain.put("pepekwan", 50000);
+		userFundsMain.put("TylerThompson", 50000);
+		userFundsMain.put("Rodger32", 10000);
+	}
 	public void userMenuDisplay() {
 		String display = "";
 		String newLine = System.getProperty("line.separator");
@@ -76,49 +84,58 @@ public class UserMenu {
 	
 	public void userMenuOption(int choice) {
 		int amount = 0;
+		String username = this.getUsername();
+		
+		
 		if(choice == 1) {																	//DEPOSIT
 			System.out.println("================");
+			System.out.println("You currently have: " + userFundsMain.get(username) + "$");
 			System.out.println("How much would you like to deposit into your account:");
+			
 			amount = scan.nextInt();
-			money += amount;
-			System.out.println("You now have: " + money + "$");
+			userFundsMain.replace(username, userFundsMain.get(username) + amount);
+			
+			System.out.println("You now have: " + userFundsMain.get(username) + "$");
 			System.out.println("==================");
 			transactions.add("Deposited: " + amount);
 			userMenuDisplay();
 		}
 		else if(choice == 2) {																//WITHDRAW
 			System.out.println("================");
+			System.out.println("You currently have: " + userFundsMain.get(username) + "$");
 			System.out.println("How much would you like to withdraw from your account:");
 			amount = scan.nextInt();
-			if(money < amount) {
+			if(userFundsMain.get(username) < amount) {
 				System.out.println("***Insufficient Funds***");
 				System.out.println("================");
 				userMenuDisplay();
 			}
 			else {
-				money -= amount;
+				userFundsMain.put(username, userFundsMain.get(username) - amount);
+				//money -= amount;
 			}
-			System.out.println("You now have: " + money + "$");
+			System.out.println("You now have: " + userFundsMain.get(username) + "$");
 			System.out.println("==================");
 			transactions.add("Withdrew: " + amount);
 			userMenuDisplay();
 		}
 		else if(choice == 3) {																//Loses track of money when signing out
 			System.out.println("================");
+			System.out.println("You currently have: " + userFundsMain.get(username) + "$");
 			System.out.println("Enter whose account you would like to transfer into off this list of users:");
 			System.out.println(loginClass.createAccounts().keySet());
 			String user = scan.next();
 			System.out.println("Enter how much you would like to transfer");
 			int amountTransfer = scan.nextInt();
 			
-			if(amountTransfer > money) {
+			if(userFundsMain.get(username) < amountTransfer) {
 				System.out.println("***Insufficient Funds***");
 				System.out.println("================");
 				userMenuDisplay();
 			}
 			else {
-				money -= amountTransfer;
-				System.out.println("You now have: " + money + "$");
+				userFundsMain.put(username, userFundsMain.get(username) - amountTransfer);
+				System.out.println("You now have: " + userFundsMain.get(username) + "$");
 				transactions.add("Transferred: " + amountTransfer);
 				System.out.println("================");
 				userMenuDisplay();
