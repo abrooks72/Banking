@@ -60,6 +60,7 @@ public class UserMenu {
 		userFundsMain.put("pepekwan", 50000);
 		userFundsMain.put("TylerThompson", 50000);
 		userFundsMain.put("Rodger32", 10000);
+		userFundsMain = Login.userFunds;
 	}
 	public void userMenuDisplay() {
 		String display = "";
@@ -133,7 +134,7 @@ public class UserMenu {
 				System.out.println("================");
 				userMenuDisplay();
 			}
-			else {
+			else {								// This block needs to be edited in order to save data
 				userFundsMain.put(username, userFundsMain.get(username) - amountTransfer);
 				System.out.println("You now have: " + userFundsMain.get(username) + "$");
 				transactions.add("Transferred: " + amountTransfer);
@@ -151,7 +152,7 @@ public class UserMenu {
 		else if(choice == 5) {
 			System.out.println("================");
 			System.out.println("User Info:");
-			System.out.println("Current funds: " + money + "$");
+			System.out.println("Current funds: " + userFundsMain.get(username) + "$");
 			System.out.println("Username: " + UserMenu.username);								//How to get the username and password
 			System.out.println("Password: " + UserMenu.password);
 			System.out.println("================");
