@@ -39,12 +39,20 @@ public class Menu {
 		}
 		if(choice == 1) {			// 1 represents the create new account menu
 			System.out.println("Create a New Account");
-			display =  login + newLine + exit;
-			System.out.println(display);
-			System.out.print("Which option would you like to choose: ");
-			// Make a call to new account class
-			choice = scan.nextInt();
-			menuOption = 1;
+			System.out.println("Enter the username of the account that you would like to create: ");
+			String name = scan.next();
+			boolean checkName = loginClass.usernameCheck(name);
+			if(checkName != true) {
+				System.out.println("User does not exist");
+				System.out.println("Enter the password of the account that you would like to create: ");
+				String password = scan.next();
+				CreateLogin createUser = new CreateLogin(name, password);
+			}
+			else {
+				System.out.println("User already exists, please pick a new name");
+				currentMenu(1);
+			}
+			
 			System.out.println("===============");
 		}
 		else if(choice == 2) {			// Login option ... somewhat works

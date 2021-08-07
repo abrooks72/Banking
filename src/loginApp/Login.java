@@ -32,6 +32,16 @@ public class Login {
        return accounts;
     }
     
+	public boolean usernameCheck(String username) {
+		createAccounts();
+		
+		if(accounts.containsKey(username)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	public boolean verifyAccount(String username, String password) {
 		
