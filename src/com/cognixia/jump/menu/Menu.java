@@ -28,7 +28,7 @@ public class Menu {
 		
 		
 		
-		if(choice == 0) {				// 0 represents the main menu
+		if(choice == 0) {									// 0 represents the main menu
 			System.out.println("Main Menu");
 			display = newAccount + newLine + login + newLine + exit;
 			System.out.println(display);
@@ -37,25 +37,30 @@ public class Menu {
 			menuOption = 0;
 			System.out.println("================");
 		}
-		if(choice == 1) {			// 1 represents the create new account menu
+		if(choice == 1) {									// 1 represents the create new account menu
 			System.out.println("Create a New Account");
 			System.out.println("Enter the username of the account that you would like to create: ");
 			String name = scan.next();
 			boolean checkName = loginClass.usernameCheck(name);
-			if(checkName != true) {
+			if(checkName != true) {							// Check if account user name is taken
 				System.out.println("User does not exist");
 				System.out.println("Enter the password of the account that you would like to create: ");
 				String password = scan.next();
-				CreateLogin createUser = new CreateLogin(name, password);
+				System.out.println("Creating account...");
+				System.out.println("Please sign in to your new account.");
+				System.out.println("=============");
+				loginClass.newAccount(name, password);
+				loginClass.newFund(name);
+				currentMenu(2);
 			}
 			else {
-				System.out.println("User already exists, please pick a new name");
+				System.out.println("***User already exists, please pick a new name***");
+				System.out.println("=============");
 				currentMenu(1);
 			}
-			
 			System.out.println("===============");
 		}
-		else if(choice == 2) {			// Login option ... somewhat works
+		else if(choice == 2) {								// Check login credentials
 			System.out.println("Login to Your Account");
 			System.out.println("What is your username:");
 			String user = scan.next();
@@ -80,7 +85,7 @@ public class Menu {
 			}
 			
 		}
-		else if(choice == 3) {			// 3 represents the exit menu
+		else if(choice == 3) {								// Close the browser
 			System.out.println("Thanks for using this application.");
 			menuOption = 3;
 			return;

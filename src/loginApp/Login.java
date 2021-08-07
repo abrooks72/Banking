@@ -32,6 +32,14 @@ public class Login {
        return accounts;
     }
     
+    public void newAccount(String username, String password) {
+    	accounts.put(username, password);
+    }
+    
+    public void newFund(String username) {
+    	userFunds.put(username, 0);
+    }
+    
 	public boolean usernameCheck(String username) {
 		createAccounts();
 		
@@ -57,6 +65,10 @@ public class Login {
 		}
 		
 		
+	}
+	
+	public String allUsers() {
+		return accounts.toString();
 	}
 	
 	

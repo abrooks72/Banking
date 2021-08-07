@@ -12,10 +12,15 @@ public class CreateLogin {
 	private static String createUser;
 	private static String createPass;
 	
+	public CreateLogin() {
+		
+	}
+	
 	public CreateLogin(String username, String password) {
 		super();
 		this.createUser = username;
 		this.createPass = password;
+		
 	}
 
 	public static String getCreateUser() {
