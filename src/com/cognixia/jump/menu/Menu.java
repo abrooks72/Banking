@@ -54,7 +54,7 @@ public class Menu {
 				loginClass.newAccount(name, password);
 				loginClass.newFund(name);
 				Driver.accounts.put(name, password);
-				System.out.println(loginClass.accounts);
+				
 				currentMenu(2);
 			}
 			else {
