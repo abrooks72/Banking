@@ -1,4 +1,4 @@
-package loginApp;
+package com.cognixia.jump.login;
 
 import java.util.*;
 

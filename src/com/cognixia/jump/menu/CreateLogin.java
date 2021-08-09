@@ -2,7 +2,7 @@ package com.cognixia.jump.menu;
 
 import java.util.Scanner;
 
-import loginApp.Login;
+import com.cognixia.jump.login.Login;
 
 public class CreateLogin {
 	
