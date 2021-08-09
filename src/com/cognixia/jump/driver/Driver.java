@@ -16,16 +16,25 @@ public class Driver {
 	
 	public static final String RESET = "\033[0m";  // Text Reset
 	public static final String RED = "\033[0;31m";     // RED
+	public static HashMap<String, String> accounts = new HashMap<String, String>();
+	public static HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//myMenu.currentMenu(0);
-		HashMap<String, String> accounts = new HashMap<String, String>();
-		login.createAccounts();
 		
+		//accounts = login.accounts;
+		//System.out.println(accounts);
+		
+		accounts = login.accounts;
+		userFunds = login.userFunds;
+		System.out.println(accounts);
+		System.out.println(userFunds);
 		System.out.println("WELCOME TO THE MAIN MENU");
 		myMenu.currentMenu(0);
 		
+		userFunds = login.userFunds;
+		System.out.println(userFunds);
 	}
 
 }

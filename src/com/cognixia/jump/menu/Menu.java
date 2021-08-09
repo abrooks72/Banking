@@ -3,6 +3,8 @@ package com.cognixia.jump.menu;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.cognixia.jump.driver.Driver;
+
 import loginApp.Login;
 
 
@@ -51,6 +53,8 @@ public class Menu {
 				System.out.println("=============");
 				loginClass.newAccount(name, password);
 				loginClass.newFund(name);
+				Driver.accounts.put(name, password);
+				System.out.println(loginClass.accounts);
 				currentMenu(2);
 			}
 			else {
@@ -73,8 +77,8 @@ public class Menu {
 			if(success == true) {
 				System.out.println("Login Success");
 				System.out.println("=================");
-				int money = Login.userFunds.get(user);
-				System.out.println("Current Balance: " + money + "$");
+				
+				System.out.println("Current Balance: " + Driver.userFunds.get(user) + "$");
 				UserMenu userMenu = new UserMenu(user, password);
 				userMenu.userMenuDisplay();
 			}

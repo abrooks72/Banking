@@ -47,7 +47,6 @@ public class CreateLogin {
 		username = scan.next();
 		boolean success = loginClass.usernameCheck(username);
 		
-		loginClass.createAccounts();
 		
 		if(loginClass.usernameCheck(username)) {
 			System.out.println("User exists");
