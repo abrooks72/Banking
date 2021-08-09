@@ -41,7 +41,7 @@ public class Driver {
 		
 		//System.out.println( ansi().eraseScreen().fg(RED).a("Hello").fg(GREEN).a(" World").reset() );
 		
-		System.out.println(ANSI_YELLOW + "WELCOME TO THE MAIN MENU" + ANSI_RESET);
+		System.out.println(ANSI_YELLOW + "WELCOME TO THE MAIN MENU");
 		myMenu.currentMenu(0);
 		
 		userFunds = login.userFunds;

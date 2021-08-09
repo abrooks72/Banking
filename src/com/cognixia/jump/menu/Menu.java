@@ -12,7 +12,15 @@ public class Menu {
 	Scanner scan = new Scanner(System.in);
 	public static Login loginClass = new Login();
 	public static HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
-	
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	public static final String ANSI_BLUE = "\u001B[34m";
+	public static final String ANSI_PURPLE = "\u001B[35m";
+	public static final String ANSI_CYAN = "\u001B[36m";
+	public static final String ANSI_WHITE = "\u001B[37m";
+	public static final String ANSI_RESET = "\u001B[0m";
 	
 	public Menu() {
 		
@@ -30,7 +38,7 @@ public class Menu {
 		
 		
 		if(choice == 0) {									// 0 represents the main menu
-			System.out.println("Main Menu");
+			System.out.println(ANSI_WHITE + "Main Menu");
 			display = newAccount + newLine + login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
@@ -39,7 +47,7 @@ public class Menu {
 			System.out.println("================");
 		}
 		if(choice == 1) {									// 1 represents the create new account menu
-			System.out.println("Create a New Account");
+			System.out.println(ANSI_CYAN + "Create a New Account");
 			System.out.println("Enter the username of the account that you would like to create: ");
 			String name = scan.next();
 			boolean checkName = loginClass.usernameCheck(name);
@@ -57,24 +65,24 @@ public class Menu {
 				currentMenu(2);
 			}
 			else {
-				System.out.println("***User already exists, please pick a new name***");
+				System.out.println(ANSI_RED + "***User already exists, please pick a new name***");
 				System.out.println("=============");
 				currentMenu(1);
 			}
 			System.out.println("===============");
 		}
 		else if(choice == 2) {								// Check login credentials
-			System.out.println("Login to Your Account");
-			System.out.println("What is your username:");
+			System.out.println(ANSI_WHITE + "Login to Your Account");
+			System.out.println(ANSI_PURPLE + "What is your username:");
 			String user = scan.next();
-			System.out.println("Enter your password:");
+			System.out.println("Enter your password:" + ANSI_BLACK);
 			String password = scan.next();
 			
 			
 			boolean success = loginClass.verifyAccount(user, password);
 			
 			if(success == true) {
-				System.out.println("Login Success");
+				System.out.println(ANSI_GREEN + "Login Success");
 				System.out.println("=================");
 				
 				System.out.println("Current Balance: " + Driver.userFunds.get(user) + "$");
@@ -82,7 +90,7 @@ public class Menu {
 				userMenu.userMenuDisplay();
 			}
 			else {
-				System.out.println("Login failure, returning to main menu");
+				System.out.println(ANSI_RED + "Login failure, returning to main menu");
 				System.out.println("==============");
 				currentMenu(0);
 			}
