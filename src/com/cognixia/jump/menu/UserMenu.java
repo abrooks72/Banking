@@ -129,6 +129,7 @@ public class UserMenu {
 			}
 			else {								// This block needs to be edited in order to save data
 				Driver.userFunds.put(username, Driver.userFunds.get(username) - amountTransfer);
+				Driver.userFunds.put(user, Driver.userFunds.get(user) + amountTransfer);
 				System.out.println("You now have: " + Driver.userFunds.get(username) + "$");
 				transactions.add("Transferred: " + amountTransfer);
 				System.out.println("================");

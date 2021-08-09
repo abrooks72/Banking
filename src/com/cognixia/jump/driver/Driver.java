@@ -28,13 +28,12 @@ public class Driver {
 		
 		accounts = login.accounts;
 		userFunds = login.userFunds;
-		System.out.println(accounts);
-		System.out.println(userFunds);
+		
 		System.out.println("WELCOME TO THE MAIN MENU");
 		myMenu.currentMenu(0);
 		
 		userFunds = login.userFunds;
-		System.out.println(userFunds);
+		
 	}
 
 }
