@@ -19,6 +19,9 @@ public class UserMenu {
 	public static final String ANSI_GREEN = "\u001B[32m";
 	public static final String ANSI_YELLOW = "\u001B[33m";
 	public static final String ANSI_WHITE = "\u001B[37m";
+	public static final String ANSI_BLUE = "\u001B[34m";
+	public static final String ANSI_CYAN = "\u001B[36m";
+	public static final String ANSI_RESET = "\u001B[0m";
 	
 	public int money = 0;
 	
@@ -84,7 +87,7 @@ public class UserMenu {
 		
 		
 		if(choice == 1) {																	//DEPOSIT
-			System.out.println("================");
+			System.out.println(ANSI_RESET + "================");
 			//System.out.println("You currently have: " + userFundsMain.get(username) + "$");
 			System.out.println(ANSI_GREEN + "You currently have: " + Driver.userFunds.get(username) + "$");
 			System.out.println("How much would you like to deposit into your account:");
@@ -93,7 +96,7 @@ public class UserMenu {
 			Login.userFunds.replace(username, Login.userFunds.get(username) + amount);
 			
 			System.out.println("You now have: " + Login.userFunds.get(username) + "$");
-			System.out.println("==================");
+			System.out.println(ANSI_RESET + "==================");
 			transactions.add("Deposited: " + amount);
 			userMenuDisplay();
 		}
@@ -112,22 +115,22 @@ public class UserMenu {
 				//money -= amount;
 			}
 			System.out.println("You now have: " + Driver.userFunds.get(username) + "$");
-			System.out.println("==================");
+			System.out.println(ANSI_RESET + "==================");
 			transactions.add("Withdrew: " + amount);
 			userMenuDisplay();
 		}
 		else if(choice == 3) {																//Loses track of money when signing out
-			System.out.println("================");
-			System.out.println(ANSI_RED + "You currently have: " + Driver.userFunds.get(username) + "$");
-			System.out.println("Enter whose account you would like to transfer into off this list of users:");
+			System.out.println(ANSI_RESET + "================");
+			System.out.println(ANSI_GREEN + "You currently have: " + Driver.userFunds.get(username) + "$");
+			System.out.println(ANSI_CYAN + "Enter whose account you would like to transfer into off this list of users:");
 			System.out.println(Driver.accounts.keySet());
 			String user = scan.next();
 			System.out.println("Enter how much you would like to transfer");
 			int amountTransfer = scan.nextInt();
 			
 			if(Driver.userFunds.get(username) < amountTransfer) {
-				System.out.println("***Insufficient Funds***");
-				System.out.println("================");
+				System.out.println(ANSI_RED + "***Insufficient Funds***");
+				System.out.println(ANSI_RESET + "================");
 				userMenuDisplay();
 			}
 			else {								// This block needs to be edited in order to save data
@@ -135,32 +138,32 @@ public class UserMenu {
 				Driver.userFunds.put(user, Driver.userFunds.get(user) + amountTransfer);
 				System.out.println("You now have: " + Driver.userFunds.get(username) + "$");
 				transactions.add("Transferred: " + amountTransfer);
-				System.out.println("================");
+				System.out.println(ANSI_RESET + "================");
 				userMenuDisplay();
 			}
 		}
 		else if(choice == 4) {
-			System.out.println("================");
+			System.out.println(ANSI_RESET + "================");
 			System.out.println(ANSI_WHITE + "Recent transactions:");
 			System.out.println(transactions.toString());
-			System.out.println("================");
+			System.out.println(ANSI_RESET + "================");
 			userMenuDisplay();
 		}
 		else if(choice == 5) {
-			System.out.println("================");
+			System.out.println(ANSI_RESET + "================");
 			System.out.println(ANSI_WHITE + "User Info:");
 			System.out.println("Current funds: " + Driver.userFunds.get(username) + "$");
 			System.out.println("Username: " + UserMenu.username);								//How to get the username and password
 			System.out.println("Password: " + UserMenu.password);
-			System.out.println("================");
+			System.out.println(ANSI_RESET + "================");
 			userMenuDisplay();
 		}
 		else if(choice == 6) {
-			System.out.println("================");
-			System.out.println("Thank you for being a value customer");
+			System.out.println(ANSI_RESET + "================");
+			System.out.println(ANSI_GREEN + "Thank you for being a value customer");
 			money = 0;
-			System.out.println("Returning to login page");
-			System.out.println("================");
+			System.out.println(ANSI_GREEN + "Returning to login page");
+			System.out.println(ANSI_RESET + "================");
 			defaultMenu.currentMenu(0);
 		}
 	}

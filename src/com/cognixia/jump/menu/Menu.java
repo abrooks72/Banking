@@ -32,22 +32,22 @@ public class Menu {
 	public void currentMenu(int choice) {
 		String display = "";
 		String newLine = System.getProperty("line.separator");
-		String newAccount = ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "1: Create New Account";
-		String login = ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "2: Login";
-		String exit = ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "3: Close Browser";
+		String newAccount = ANSI_YELLOW + "1: Create New Account";
+		String login = ANSI_YELLOW + "2: Login";
+		String exit = ANSI_YELLOW + "3: Close Browser";
 		
 		int menuOption = -1;
 		
 		
 		
 		if(choice == 0) {									// 0 represents the main menu
-			System.out.println(ANSI_BLACK + ANSI_YELLOW_BACKGROUND + "Main Menu");
+			System.out.println(ANSI_BLACK + "Main Menu");
 			display = newAccount + newLine + login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
 			choice = scan.nextInt();
 			menuOption = 0;
-			System.out.println("================" + ANSI_RESET);
+			System.out.println(ANSI_RESET + "================");
 		}
 		if(choice == 1) {									// 1 represents the create new account menu
 			System.out.println(ANSI_CYAN + "Create a New Account");
@@ -60,7 +60,7 @@ public class Menu {
 				String password = scan.next();
 				System.out.println("Creating account...");
 				System.out.println("Please sign in to your new account.");
-				System.out.println("=============");
+				System.out.println(ANSI_RESET + "=============");
 				loginClass.newAccount(name, password);
 				loginClass.newFund(name);
 				Driver.accounts.put(name, password);
@@ -69,10 +69,10 @@ public class Menu {
 			}
 			else {
 				System.out.println(ANSI_RED + "***User already exists, please pick a new name***");
-				System.out.println("=============");
+				System.out.println(ANSI_RESET + "=============");
 				currentMenu(1);
 			}
-			System.out.println("===============");
+			System.out.println(ANSI_RESET + "===============");
 		}
 		else if(choice == 2) {								// Check login credentials
 			System.out.println(ANSI_PURPLE + "Login to Your Account");
@@ -86,15 +86,16 @@ public class Menu {
 			
 			if(success == true) {
 				System.out.println(ANSI_GREEN + "Login Success");
-				System.out.println("=================");
-				
 				System.out.println("Current Balance: " + Driver.userFunds.get(user) + "$");
+				System.out.println(ANSI_RESET + "=================");
+				
+				
 				UserMenu userMenu = new UserMenu(user, password);
 				userMenu.userMenuDisplay();
 			}
 			else {
 				System.out.println(ANSI_RED + "Login failure, returning to main menu");
-				System.out.println("==============");
+				System.out.println(ANSI_RESET + "==============");
 				currentMenu(0);
 			}
 			
