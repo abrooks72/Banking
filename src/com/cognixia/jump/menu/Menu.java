@@ -54,18 +54,26 @@ public class Menu {
 			System.out.println("Enter the username of the account that you would like to create: ");
 			String name = scan.next();
 			boolean checkName = loginClass.usernameCheck(name);
+			
 			if(checkName != true) {							// Check if account user name is taken
-				System.out.println("User does not exist");
-				System.out.println("Enter the password of the account that you would like to create: ");
+				System.out.println(ANSI_GREEN + "User does not exist");
+				System.out.println(ANSI_CYAN + "Enter an 8 digit password of the account that you would like to create containing at least 1 upper case letter, and 2 numbers: ");
 				String password = scan.next();
-				System.out.println("Creating account...");
-				System.out.println("Please sign in to your new account.");
-				System.out.println(ANSI_RESET + "=============");
-				loginClass.newAccount(name, password);
-				loginClass.newFund(name);
-				Driver.accounts.put(name, password);
+				boolean checkPassword = loginClass.passwordCheck(password);
+				if(!checkPassword) {
+					currentMenu(1);
+				}
+				else {
+					System.out.println(ANSI_GREEN + "Creating account...");
+					System.out.println("Please sign in to your new account.");
+					System.out.println(ANSI_RESET + "=============");
+					loginClass.newAccount(name, password);
+					loginClass.newFund(name);
+					Driver.accounts.put(name, password);
+					
+					currentMenu(2);
+				}
 				
-				currentMenu(2);
 			}
 			else {
 				System.out.println(ANSI_RED + "***User already exists, please pick a new name***");
