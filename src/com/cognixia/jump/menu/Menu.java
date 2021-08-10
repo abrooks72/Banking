@@ -22,6 +22,9 @@ public class Menu {
 	public static final String ANSI_WHITE = "\u001B[37m";
 	public static final String ANSI_RESET = "\u001B[0m";
 	
+	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+	public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+	
 	public Menu() {
 		
 	}
@@ -29,22 +32,22 @@ public class Menu {
 	public void currentMenu(int choice) {
 		String display = "";
 		String newLine = System.getProperty("line.separator");
-		String newAccount = "1: Create New Account";
-		String login = "2: Login";
-		String exit = "3: Close Browser";
+		String newAccount = ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "1: Create New Account";
+		String login = ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "2: Login";
+		String exit = ANSI_YELLOW_BACKGROUND + ANSI_BLACK + "3: Close Browser";
 		
 		int menuOption = -1;
 		
 		
 		
 		if(choice == 0) {									// 0 represents the main menu
-			System.out.println(ANSI_WHITE + "Main Menu");
+			System.out.println(ANSI_BLACK + ANSI_YELLOW_BACKGROUND + "Main Menu");
 			display = newAccount + newLine + login + newLine + exit;
 			System.out.println(display);
 			System.out.print("Which option would you like to choose: ");
 			choice = scan.nextInt();
 			menuOption = 0;
-			System.out.println("================");
+			System.out.println("================" + ANSI_RESET);
 		}
 		if(choice == 1) {									// 1 represents the create new account menu
 			System.out.println(ANSI_CYAN + "Create a New Account");
@@ -72,7 +75,7 @@ public class Menu {
 			System.out.println("===============");
 		}
 		else if(choice == 2) {								// Check login credentials
-			System.out.println(ANSI_WHITE + "Login to Your Account");
+			System.out.println(ANSI_PURPLE + "Login to Your Account");
 			System.out.println(ANSI_PURPLE + "What is your username:");
 			String user = scan.next();
 			System.out.println("Enter your password:" + ANSI_BLACK);

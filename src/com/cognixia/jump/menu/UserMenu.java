@@ -15,6 +15,10 @@ public class UserMenu {
 	public static Login loginClass = new Login();
 	public static Menu defaultMenu = new Menu();
 	public List<String> transactions = new ArrayList<String>();
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	public static final String ANSI_WHITE = "\u001B[37m";
 	
 	public int money = 0;
 	
@@ -56,7 +60,7 @@ public class UserMenu {
 	public void userMenuDisplay() {
 		String display = "";
 		String newLine = System.getProperty("line.separator");
-		String deposit = "1: Deposit";
+		String deposit = ANSI_YELLOW + "1: Deposit";
 		String withdraw = "2: Withdraw";
 		String transfer = "3: Transfer";
 		String recents = "4: Recent Transactions";
@@ -82,7 +86,7 @@ public class UserMenu {
 		if(choice == 1) {																	//DEPOSIT
 			System.out.println("================");
 			//System.out.println("You currently have: " + userFundsMain.get(username) + "$");
-			System.out.println("You currently have: " + Driver.userFunds.get(username) + "$");
+			System.out.println(ANSI_GREEN + "You currently have: " + Driver.userFunds.get(username) + "$");
 			System.out.println("How much would you like to deposit into your account:");
 			
 			amount = scan.nextInt();
@@ -95,7 +99,7 @@ public class UserMenu {
 		}
 		else if(choice == 2) {																//WITHDRAW
 			System.out.println("================");
-			System.out.println("You currently have: " + Driver.userFunds.get(username) + "$");
+			System.out.println(ANSI_RED + "You currently have: " + Driver.userFunds.get(username) + "$");
 			System.out.println("How much would you like to withdraw from your account:");
 			amount = scan.nextInt();
 			if(Driver.userFunds.get(username) < amount) {
@@ -114,7 +118,7 @@ public class UserMenu {
 		}
 		else if(choice == 3) {																//Loses track of money when signing out
 			System.out.println("================");
-			System.out.println("You currently have: " + Driver.userFunds.get(username) + "$");
+			System.out.println(ANSI_RED + "You currently have: " + Driver.userFunds.get(username) + "$");
 			System.out.println("Enter whose account you would like to transfer into off this list of users:");
 			System.out.println(Driver.accounts.keySet());
 			String user = scan.next();
@@ -137,14 +141,14 @@ public class UserMenu {
 		}
 		else if(choice == 4) {
 			System.out.println("================");
-			System.out.println("Recent transactions:");
+			System.out.println(ANSI_WHITE + "Recent transactions:");
 			System.out.println(transactions.toString());
 			System.out.println("================");
 			userMenuDisplay();
 		}
 		else if(choice == 5) {
 			System.out.println("================");
-			System.out.println("User Info:");
+			System.out.println(ANSI_WHITE + "User Info:");
 			System.out.println("Current funds: " + Driver.userFunds.get(username) + "$");
 			System.out.println("Username: " + UserMenu.username);								//How to get the username and password
 			System.out.println("Password: " + UserMenu.password);

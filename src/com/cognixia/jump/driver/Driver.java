@@ -25,7 +25,8 @@ public class Driver {
 	public static final String ANSI_WHITE = "\u001B[37m";
 	public static HashMap<String, String> accounts = new HashMap<String, String>();
 	public static HashMap<String, Integer> userFunds = new HashMap<String, Integer>();
-	
+	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+	public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
 	public static final String ANSI_RESET = "\u001B[0m";
 	
 	
@@ -41,7 +42,8 @@ public class Driver {
 		
 		//System.out.println( ansi().eraseScreen().fg(RED).a("Hello").fg(GREEN).a(" World").reset() );
 		
-		System.out.println(ANSI_YELLOW + "WELCOME TO THE MAIN MENU");
+		System.out.println(ANSI_WHITE + "WELCOME TO THE MAIN MENU" + ANSI_RESET);
+		
 		myMenu.currentMenu(0);
 		
 		userFunds = login.userFunds;
