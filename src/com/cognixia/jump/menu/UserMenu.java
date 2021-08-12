@@ -185,7 +185,7 @@ public class UserMenu {
 		int length = accountList.size();
 		
 		if(length == 0) {
-			myTransactions.add("No transactions");
+			myTransactions = accountList.subList(accountList.size(), accountList.size());
 		}
 		else if(length == 1) {
 			myTransactions = accountList.subList(accountList.size()-1, accountList.size());
