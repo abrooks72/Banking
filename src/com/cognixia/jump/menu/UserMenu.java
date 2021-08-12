@@ -150,7 +150,7 @@ public class UserMenu {
 		else if(choice == 4) {
 			System.out.println(ANSI_RESET + "================");
 			System.out.println(ANSI_WHITE + "Recent transactions:");
-			System.out.println(transactions.toString());
+			System.out.println(reduceList(transactions).toString());
 			System.out.println(ANSI_RESET + "================");
 			userMenuDisplay();
 		}
@@ -178,5 +178,31 @@ public class UserMenu {
 			System.out.println(ANSI_RED + "Not a valid option");
 			userMenuDisplay();
 		}
+	}
+	
+	public List<String> reduceList(List<String> accountList){
+		List<String> myTransactions = null;
+		int length = accountList.size();
+		
+		if(length == 0) {
+			myTransactions.add("No transactions");
+		}
+		else if(length == 1) {
+			myTransactions = accountList.subList(accountList.size()-1, accountList.size());
+		}
+		else if(length == 2) {
+			myTransactions = accountList.subList(accountList.size()-2, accountList.size());
+		}
+		else if(length == 3) {
+			myTransactions = accountList.subList(accountList.size()-3, accountList.size());
+		}
+		else if(length == 4) {
+			myTransactions = accountList.subList(accountList.size()-4, accountList.size());
+		}
+		else {
+			myTransactions = accountList.subList(accountList.size()-5, accountList.size());
+		}
+		
+		return myTransactions;
 	}
 }
