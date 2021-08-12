@@ -69,9 +69,10 @@ public class UserMenu {
 		String recents = "4: Recent Transactions";
 		String info = "5: User Info";
 		String exit = "6: Log out.";
+		String closeBrowser = "7: End Session";
 		int choice = -1;
 		
-		display = deposit + newLine + withdraw + newLine + transfer + newLine + recents + newLine + info + newLine + exit;
+		display = deposit + newLine + withdraw + newLine + transfer + newLine + recents + newLine + info + newLine + exit + newLine + closeBrowser;
 		System.out.println(display);
 		
 		
@@ -107,7 +108,7 @@ public class UserMenu {
 			amount = scan.nextInt();
 			if(Driver.userFunds.get(username) < amount) {
 				System.out.println("***Insufficient Funds***");
-				System.out.println("================");
+				System.out.println(ANSI_RESET + "================");
 				userMenuDisplay();
 			}
 			else {
@@ -125,6 +126,10 @@ public class UserMenu {
 			System.out.println(ANSI_CYAN + "Enter whose account you would like to transfer into off this list of users:");
 			System.out.println(Driver.accounts.keySet());
 			String user = scan.next();
+			if(!Driver.accounts.keySet().contains(user)) {
+				System.out.println(ANSI_RED + "That user does not exist");
+				userMenuDisplay();
+			}
 			System.out.println("Enter how much you would like to transfer");
 			int amountTransfer = scan.nextInt();
 			
@@ -133,7 +138,7 @@ public class UserMenu {
 				System.out.println(ANSI_RESET + "================");
 				userMenuDisplay();
 			}
-			else {								// This block needs to be edited in order to save data
+			else {								
 				Driver.userFunds.put(username, Driver.userFunds.get(username) - amountTransfer);
 				Driver.userFunds.put(user, Driver.userFunds.get(user) + amountTransfer);
 				System.out.println("You now have: " + Driver.userFunds.get(username) + "$");
@@ -165,6 +170,13 @@ public class UserMenu {
 			System.out.println(ANSI_GREEN + "Returning to login page");
 			System.out.println(ANSI_RESET + "================");
 			defaultMenu.currentMenu(0);
+		}
+		else if(choice == 7) {
+			System.exit(1);
+		}
+		else {
+			System.out.println(ANSI_RED + "Not a valid option");
+			userMenuDisplay();
 		}
 	}
 }

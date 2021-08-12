@@ -113,6 +113,11 @@ public class Menu {
 			menuOption = 3;
 			return;
 		}
+		else {
+			System.out.println(ANSI_RED + "Not a valid option");
+			System.out.println(ANSI_RESET + "=============");
+			currentMenu(0);
+		}
 		
 		
 		scan.close();
